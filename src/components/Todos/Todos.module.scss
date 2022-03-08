@@ -1,84 +1,116 @@
-@mixin text($color){
-    font-size: 16px;
-    color: $color;
-    font-family: 'Lato';
+@mixin text($color) {
+  font-size: 16px;
+  color: $color;
+  font-family: "Lato";
 }
 
-@mixin button($background, $color){
-    width: 100px;
-    height: 35px;
-    background: $background;
-    color: $color;
-    border-radius: 7.5px;
-    border: none;
-    transition: .35s;
-    cursor: pointer;
-    
-
+@mixin button($width, $background, $color) {
+  width: $width;
+  height: 35px;
+  background: $background;
+  color: $color;
+  border-radius: 7.5px;
+  border: none;
+  transition: 0.35s;
+  cursor: pointer;
 }
 
 @mixin flex($justify: center, $align: center) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
 }
 
-.flex-center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
-
-.container{
-    @extend .flex-center;
-    min-height: 100vh;
-    width: 100vw;    
-    
+.container {
+  @extend .flex-center;
+  min-height: 100vh;
+  width: 100vw;
 }
 
-.menu{
-    width: 500px;
-    height: 500px;
-    border: 1px solid red;
+.menu {
+  width: 500px;
+  height: 500px;
 }
 
-.header{
-    @include flex(flex-start, flex-start);
-    width: 100%;
-    height: 20%;
-    border: 1px solid turquoise;    
-    flex-direction: column;  
-    
+.header {
+  @include flex(flex-start, flex-start);
+  width: 100%;
+  height: 20%;
+
+  flex-direction: column;
 }
 
-.navigation{
-    @include flex(space-between, center);
-    @include text(darkred);
-    width: 100%;
-    height: 50%;
-    border: 1px solid blue;
-    
+.navigation {
+  @include flex(space-between, center);
+  @include text(darkred);
+  width: 100%;
+  height: 50%;
 }
 
-.navigation div{
-    padding: 0 15px 0 15px;
+.navigation div {
+  padding: 0 15px 0 15px;
 }
 
-.createButton{
-    @include button(lightskyblue, green)
+.input {
+  @include text(darkblue);
+  width: 400px;
+  height: 25px;
+  border: none;
+  border-bottom: 0.5px solid lightblue;
+  outline: none;
 }
 
-.input{
-    @include text(darkblue);
-    width: 400px;
-    height: 25px;
-    border: none;
-    border-bottom: .5px solid lightblue;
-    outline: none;
-    
+.content {
+  @include flex(space-between, center);
+  @include text(darkblue);
+  height: 60px;
+  border: 1px solid gray;
+  padding-left: 15px;
+  text-align: center;
 }
 
+.content div + div {
+  margin-left: 10px;
+}
 
+.buttons {
+  @include flex;
+}
 
+.createButton {
+  @include button(100px, lightskyblue, green);
+  &:hover {
+    background: green;
+    color: lightskyblue;
+  }
+}
+.editButton {
+  @include button(75px, darkgray, black);
+  &:hover {
+    background: black;
+    color: gray;
+  }
+}
+.deleteButton {
+  @include button(75px, red, whitesmoke);
+  margin-left: 5px;
+  &:hover {
+    background: whitesmoke;
+    color: red;
+  }
+}
+
+.notDone {
+  border-left: 5px solid darkred;
+  transition: .35s;
+}
+.done {
+  border-left: 5px solid darkgreen;
+  transition: .35s;
+}
