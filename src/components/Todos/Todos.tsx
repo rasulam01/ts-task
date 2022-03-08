@@ -101,14 +101,18 @@ export const TodosList: React.FC = () => {
           {data.length === 0
             ? "There are no goals at the moment. Care to create one?"
             : data.map((item: any, id: number) => {
-                const changeDone = (id: number) => {
-                  axios.put(
+                const changeDone = async (id: number) => {
+                  await axios.put(
                     `https://61851c6723a2fe0017fff39d.mockapi.io/todos/${id}`,
                     {
                       done: !item.done,
                     }
-                  );
+                  );   
+                                              
                   fetchData();
+                  
+                  
+                  
                 };
                 return (
                   <div className={styles.content} key={id}>
@@ -123,13 +127,13 @@ export const TodosList: React.FC = () => {
                           autoFocus
                           onChange={(e) => setEditingText(e.target.value)}
                           value={editingText}
-                          className={styles.input}
+                          className={styles.changeInput}
                         />
                       </div>
                     ) : (
                       <div>
-                        {item.description}
-                        {"|"}
+                        {item.description ? item.description : 'No goal'}
+                        
                       </div>
                     )}
 
@@ -157,6 +161,7 @@ export const TodosList: React.FC = () => {
                       >
                         Удалить
                       </button>
+                      
                     </div>
                   </div>
                 );

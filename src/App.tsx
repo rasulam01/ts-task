@@ -3,7 +3,7 @@ import { TodosList } from './components/Todos/Todos'
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <TodosList />
     </div>
     

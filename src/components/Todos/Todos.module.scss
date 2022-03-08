@@ -66,6 +66,11 @@
   outline: none;
 }
 
+.changeInput{
+    @extend .input;
+    width: 100px;
+}
+
 .content {
   @include flex(space-between, center);
   @include text(darkblue);
@@ -73,6 +78,7 @@
   border: 1px solid gray;
   padding-left: 15px;
   text-align: center;
+  border-collapse: collapse;
 }
 
 .content div + div {
