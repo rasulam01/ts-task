@@ -107,16 +107,15 @@ export const TodosList: React.FC = () => {
                     {
                       done: !item.done,
                     }
-                  );   
-                                              
+                  );
+
                   fetchData();
-                  
-                  
-                  
                 };
                 return (
                   <div className={styles.content} key={id}>
-                    <div className={item.done ? styles.done : styles.notDone} onClick={() => changeDone(item.id)}>
+                    <div
+                      className={item.done ? styles.done : styles.notDone}                      
+                    >
                       {item.id}
                       {"."}
                     </div>
@@ -132,13 +131,19 @@ export const TodosList: React.FC = () => {
                       </div>
                     ) : (
                       <div>
-                        {item.description ? item.description : 'No goal'}
-                        
+                        {item.description ? item.description : "No goal"}
                       </div>
                     )}
 
                     <div>Date: {item.date}</div>
+                    
                     <div className={styles.buttons}>
+                    <button
+                        className={styles.statusButton}
+                        onClick={() => changeDone(item.id)}
+                      >
+                        {item.done ? 'Сделано' : 'Не сделано'}
+                      </button>
                       {editingMode ? (
                         <button
                           className={styles.editButton}
@@ -161,7 +166,6 @@ export const TodosList: React.FC = () => {
                       >
                         Удалить
                       </button>
-                      
                     </div>
                   </div>
                 );

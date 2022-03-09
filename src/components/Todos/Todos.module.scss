@@ -34,8 +34,8 @@
 }
 
 .menu {
-  width: 500px;
-  height: 500px;
+  width: 900px;
+  height: 900px;
 }
 
 .header {
@@ -102,6 +102,7 @@
     background: black;
     color: gray;
   }
+  margin-left: 5px;
 }
 .deleteButton {
   @include button(75px, red, whitesmoke);
@@ -110,13 +111,22 @@
     background: whitesmoke;
     color: red;
   }
+  margin-right: 5px;
+}
+
+.statusButton {
+    @include button(75px, navy, magenta);
+    &:hover {
+        background: magenta;
+        color: navy;
+    }
 }
 
 .notDone {
-  border-left: 5px solid darkred;
+  border-left: 10px solid darkred;
   transition: .35s;
 }
 .done {
-  border-left: 5px solid darkgreen;
+  border-left: 10px solid darkgreen;
   transition: .35s;
 }
