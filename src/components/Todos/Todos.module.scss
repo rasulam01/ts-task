@@ -12,17 +12,25 @@
   border-radius: 7.5px;
   border: none;
   transition: 0.35s;
+  margin-left: 7.5px;
   cursor: pointer;
   &:hover{
       background: $color;
       color: $background;
   }
+  
 }
 
-@mixin flex($justify: center, $align: center) {
+@mixin flex($justify-content: center, $align-items: center, $flex-direction: row) {
   display: flex;
-  justify-content: $justify;
-  align-items: $align;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $flex-direction
+}
+
+@mixin done($border-left, $transition: .35s) {
+    border-left: $border-left;
+    transition: $transition;
 }
 
 .flex-center {
@@ -32,7 +40,7 @@
 }
 
 .container {
-  @extend .flex-center;
+  @include flex;
   min-height: 100vh;
   width: 100vw;
 }
@@ -43,22 +51,20 @@
 }
 
 .header {
-  @include flex(flex-start, flex-start);
+  @include flex(flex-start, flex-start, column);
   width: 100%;
   height: 20%;
-
-  flex-direction: column;
+  
 }
 
 .navigation {
-  @include flex(space-between, center);
+  @include flex(space-between);
   @include text(darkred);
   width: 100%;
   height: 50%;
-}
-
-.navigation div {
-  padding: 0 15px 0 15px;
+  div{
+      padding: 0 15px 0 15px;
+  }
 }
 
 .input {
@@ -83,10 +89,7 @@
   padding-left: 15px;
   text-align: center;
   border-collapse: collapse;
-}
-
-.content div + div {
-  margin-left: 10px;
+  
 }
 
 .buttons {
@@ -100,13 +103,10 @@
 .editButton {
   @include button(75px, darkgray, black);
 
-  margin-left: 5px;
 }
 .deleteButton {
   @include button(75px, red, whitesmoke);
-  margin-left: 5px;
-
-  margin-right: 5px;
+  margin-right: 15px;
 }
 
 .statusButton {
@@ -115,10 +115,8 @@
 }
 
 .notDone {
-  border-left: 10px solid darkred;
-  transition: .35s;
+  @include done(10px solid darkred);
 }
 .done {
-  border-left: 10px solid darkgreen;
-  transition: .35s;
+  @include done(10px solid darkgreen);
 }
