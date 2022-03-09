@@ -44,10 +44,10 @@ export const TodosList: React.FC = () => {
   };
 
   // DELETE request
-  const deleteData = (id: number) => {
+  const deleteData = (id: number) => {    
     axios.delete(`https://61851c6723a2fe0017fff39d.mockapi.io/todos/${id}`);
     const filtered = data.filter((item: any) => item.id !== id);
-    setData(filtered);
+    setData(filtered);               
   };
 
   // EDIT function
@@ -127,7 +127,7 @@ export const TodosList: React.FC = () => {
                         />
                       </div>
                     ) : (
-                      <div>
+                      <div style={{ width: '250px', textAlign: 'justify'}}>
                         {item.description ? item.description : "No goal"}
                       </div>
                     )}
