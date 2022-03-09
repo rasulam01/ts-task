@@ -13,6 +13,10 @@
   border: none;
   transition: 0.35s;
   cursor: pointer;
+  &:hover{
+      background: $color;
+      color: $background;
+  }
 }
 
 @mixin flex($justify: center, $align: center) {
@@ -91,35 +95,23 @@
 
 .createButton {
   @include button(100px, lightskyblue, green);
-  &:hover {
-    background: green;
-    color: lightskyblue;
-  }
+
 }
 .editButton {
   @include button(75px, darkgray, black);
-  &:hover {
-    background: black;
-    color: gray;
-  }
+
   margin-left: 5px;
 }
 .deleteButton {
   @include button(75px, red, whitesmoke);
   margin-left: 5px;
-  &:hover {
-    background: whitesmoke;
-    color: red;
-  }
+
   margin-right: 5px;
 }
 
 .statusButton {
     @include button(75px, navy, magenta);
-    &:hover {
-        background: magenta;
-        color: navy;
-    }
+
 }
 
 .notDone {
