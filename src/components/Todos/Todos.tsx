@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import styles from "./Todos.module.scss";
 import axios from "axios";
 import { Data } from "../../interfaces/interfaces";
-import classNames from "classNames";
 // Importing libraries ...
 
 export const TodosList: React.FC = () => {
@@ -12,6 +11,7 @@ export const TodosList: React.FC = () => {
   // Input content
   const [input, setInput] = useState<string | any>("");
 
+  // Editing variables
   const [editingMode, setEditingMode] = useState<number | null>(null);
   const [editingText, setEditingText] = useState<string | undefined>("");
 
@@ -25,8 +25,7 @@ export const TodosList: React.FC = () => {
     const response = await axios.get(
       "https://61851c6723a2fe0017fff39d.mockapi.io/todos"
     );
-    setData(response.data);
-    console.log(response.data);
+    setData(response.data);    
   };
 
   // POST request
@@ -140,14 +139,14 @@ export const TodosList: React.FC = () => {
                         className={styles.statusButton}
                         onClick={() => changeDone(item.id)}
                       >
-                        {item.done ? "Сделано" : "Не сделано"}
+                        {item.done ? "Done!" : "Is not done yet."}
                       </button>
                       {editingMode ? (
                         <button
-                          className={styles.editButton}
+                          className={styles.editButton}                          
                           onClick={() => editData(item.id)}
                         >
-                          Изменить
+                          Сохранить
                         </button>
                       ) : (
                         <button

@@ -14,23 +14,26 @@
   transition: 0.35s;
   margin-left: 7.5px;
   cursor: pointer;
-  &:hover{
-      background: $color;
-      color: $background;
+  &:hover {
+    background: $color;
+    color: $background;
   }
-  
 }
 
-@mixin flex($justify-content: center, $align-items: center, $flex-direction: row) {
+@mixin flex(
+  $justify-content: center,
+  $align-items: center,
+  $flex-direction: row
+) {
   display: flex;
   justify-content: $justify-content;
   align-items: $align-items;
-  flex-direction: $flex-direction
+  flex-direction: $flex-direction;
 }
 
-@mixin done($border-left, $transition: .35s) {
-    border-left: $border-left;
-    transition: $transition;
+@mixin done($border-left, $transition: 0.35s) {
+  border-left: $border-left;
+  transition: $transition;
 }
 
 .flex-center {
@@ -54,7 +57,6 @@
   @include flex(flex-start, flex-start, column);
   width: 100%;
   height: 20%;
-  
 }
 
 .navigation {
@@ -62,8 +64,8 @@
   @include text(darkred);
   width: 100%;
   height: 50%;
-  div{
-      padding: 0 15px 0 15px;
+  div {
+    padding: 0 15px 0 15px;
   }
 }
 
@@ -76,9 +78,9 @@
   outline: none;
 }
 
-.changeInput{
-    @extend .input;
-    width: 100px;
+.changeInput {
+  @extend .input;
+  width: 100px;
 }
 
 .content {
@@ -89,7 +91,6 @@
   padding-left: 15px;
   text-align: center;
   border-collapse: collapse;
-  
 }
 
 .buttons {
@@ -98,11 +99,9 @@
 
 .createButton {
   @include button(100px, lightskyblue, green);
-
 }
 .editButton {
   @include button(75px, darkgray, black);
-
 }
 .deleteButton {
   @include button(75px, red, whitesmoke);
@@ -110,8 +109,7 @@
 }
 
 .statusButton {
-    @include button(75px, navy, magenta);
-
+  @include button(75px, navy, magenta);
 }
 
 .notDone {
