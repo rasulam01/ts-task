@@ -98,7 +98,7 @@ export const TodosList: React.FC = () => {
               />
             </div>
           ) : (
-            <div style={{ width: '250px', textAlign: 'justify'}} className={classNames({[styles.notDone]: !item.done, [styles.done]: item.done})}>
+            <div className={classNames({[styles.notDone]: !item.done, [styles.done]: item.done})}>
               {item.description ? item.description : "No goal"}
             </div>
           )}
@@ -110,7 +110,7 @@ export const TodosList: React.FC = () => {
               className={styles.statusButton}
               onClick={() => changeDone(item.id)}
             >
-              {item.done ? "Done!" : "Is not done yet."}
+              {item.done ? "Not done yet." : "Done!"}
             </button>
             {editingMode ? (
               <button
