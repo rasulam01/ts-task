@@ -66,6 +66,77 @@ export const TodosList: React.FC = () => {
     setEditingMode(null);
   };
 
+  const content = data.length === 0
+  ? "There are no goals at the moment. Care to create one?"
+  : data.map((item: any, id: number) => {
+      const changeDone = async (id: number) => {
+        await axios.put(
+          `https://61851c6723a2fe0017fff39d.mockapi.io/todos/${id}`,
+          {
+            done: !item.done,
+          }
+        );
+
+        fetchData();
+      };
+      return (
+        <div className={styles.content} key={id}>
+          <div className={item.done ? styles.done : styles.notDone}>
+            {item.id}
+            {"."}
+          </div>
+          {editingMode === item.id ? (
+            <div>
+              <input
+                type="text"
+                autoFocus
+                onChange={(e) => setEditingText(e.target.value)}
+                value={editingText}
+                className={styles.changeInput}
+              />
+            </div>
+          ) : (
+            <div style={{ width: '250px', textAlign: 'justify'}}>
+              {item.description ? item.description : "No goal"}
+            </div>
+          )}
+
+          <div>Date: {item.date}</div>
+
+          <div className={styles.buttons}>
+            <button
+              className={styles.statusButton}
+              onClick={() => changeDone(item.id)}
+            >
+              {item.done ? "Done!" : "Is not done yet."}
+            </button>
+            {editingMode ? (
+              <button
+                className={styles.editButton}                          
+                onClick={() => editData(item.id)}
+              >
+                Сохранить
+              </button>
+            ) : (
+              <button
+                className={styles.editButton}
+                onClick={() => setEditingMode(item.id)}
+              >
+                Изменить
+              </button>
+            )}
+
+            <button
+              className={styles.deleteButton}
+              onClick={() => deleteData(item.id)}
+            >
+              Удалить
+            </button>
+          </div>
+        </div>
+      );
+    })
+
   // Get data once the component is loaded
   useEffect(() => {
     fetchData();
@@ -97,76 +168,7 @@ export const TodosList: React.FC = () => {
           </div>
         </div>
         <div>
-          {data.length === 0
-            ? "There are no goals at the moment. Care to create one?"
-            : data.map((item: any, id: number) => {
-                const changeDone = async (id: number) => {
-                  await axios.put(
-                    `https://61851c6723a2fe0017fff39d.mockapi.io/todos/${id}`,
-                    {
-                      done: !item.done,
-                    }
-                  );
-
-                  fetchData();
-                };
-                return (
-                  <div className={styles.content} key={id}>
-                    <div className={item.done ? styles.done : styles.notDone}>
-                      {item.id}
-                      {"."}
-                    </div>
-                    {editingMode === item.id ? (
-                      <div>
-                        <input
-                          type="text"
-                          autoFocus
-                          onChange={(e) => setEditingText(e.target.value)}
-                          value={editingText}
-                          className={styles.changeInput}
-                        />
-                      </div>
-                    ) : (
-                      <div style={{ width: '250px', textAlign: 'justify'}}>
-                        {item.description ? item.description : "No goal"}
-                      </div>
-                    )}
-
-                    <div>Date: {item.date}</div>
-
-                    <div className={styles.buttons}>
-                      <button
-                        className={styles.statusButton}
-                        onClick={() => changeDone(item.id)}
-                      >
-                        {item.done ? "Done!" : "Is not done yet."}
-                      </button>
-                      {editingMode ? (
-                        <button
-                          className={styles.editButton}                          
-                          onClick={() => editData(item.id)}
-                        >
-                          Сохранить
-                        </button>
-                      ) : (
-                        <button
-                          className={styles.editButton}
-                          onClick={() => setEditingMode(item.id)}
-                        >
-                          Изменить
-                        </button>
-                      )}
-
-                      <button
-                        className={styles.deleteButton}
-                        onClick={() => deleteData(item.id)}
-                      >
-                        Удалить
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+          {content}
         </div>
       </div>
     </div>
