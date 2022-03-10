@@ -27,8 +27,8 @@
   flex-direction: $flex-direction;
 }
 
-@mixin done($border-left, $transition: 0.35s) {
-  border-left: $border-left;
+@mixin done($color, $transition: 0.35s) {
+  color: $color;
   transition: $transition;
 }
 
@@ -88,7 +88,7 @@
   padding-left: 15px;
   text-align: center;
   border-collapse: collapse;
-  background: rgb(180, 140, 240);
+  background: linear-gradient(to right, rgb(30, 200, 200), rgb(40, 190, 190), rgb(200, 0, 185))
 }
 
 .buttons {
@@ -111,8 +111,8 @@
 }
 
 .notDone {
-  @include done(10px solid darkred);
+  @include done(red);
 }
 .done {
-  @include done(10px solid darkgreen);
+  @include done(green);
 }

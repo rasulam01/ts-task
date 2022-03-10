@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./Todos.module.scss";
 import axios from "axios";
 import { Data } from "../../interfaces/interfaces";
+import classNames from "classnames";
 // Importing libraries ...
 
 export const TodosList: React.FC = () => {
@@ -44,10 +45,10 @@ export const TodosList: React.FC = () => {
   };
 
   // DELETE request
-  const deleteData = (id: number) => {    
+  const deleteData = (id: number) => {        
     axios.delete(`https://61851c6723a2fe0017fff39d.mockapi.io/todos/${id}`);
     const filtered = data.filter((item: any) => item.id !== id);
-    setData(filtered);               
+    setData(filtered);                  
   };
 
   // EDIT function
@@ -67,7 +68,9 @@ export const TodosList: React.FC = () => {
   };
 
   const content = data.length === 0
-  ? "There are no goals at the moment. Care to create one?"
+  ? <div style={{ textAlign: 'center'}}>{"There are no goals at the moment. Care to create one?"}</div>
+    
+  
   : data.map((item: any, id: number) => {
       const changeDone = async (id: number) => {
         await axios.put(
@@ -76,7 +79,6 @@ export const TodosList: React.FC = () => {
             done: !item.done,
           }
         );
-
         fetchData();
       };
       return (
@@ -96,7 +98,7 @@ export const TodosList: React.FC = () => {
               />
             </div>
           ) : (
-            <div style={{ width: '250px', textAlign: 'justify'}}>
+            <div style={{ width: '250px', textAlign: 'justify'}} className={classNames({[styles.notDone]: !item.done, [styles.done]: item.done})}>
               {item.description ? item.description : "No goal"}
             </div>
           )}
