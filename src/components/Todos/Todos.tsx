@@ -21,6 +21,10 @@ export const TodosList: React.FC = () => {
     setInput(event.target.value);
   };
 
+  const changeEditingText = (event: any) => {
+    setEditingText(event.target.value)
+  }
+
   // GET request
   const fetchData = async () => {
     const response = await axios.get(
@@ -68,9 +72,7 @@ export const TodosList: React.FC = () => {
   };
 
   const content = data.length === 0
-  ? <div style={{ textAlign: 'center'}}>{"There are no goals at the moment. Care to create one?"}</div>
-    
-  
+  ? <div style={{ textAlign: 'center', color: 'darkred', fontSize: '20px'}}>{"There are no goals at the moment. Care to create one?"}</div>      
   : data.map((item: any, id: number) => {
       const changeDone = async (id: number) => {
         await axios.put(
@@ -92,7 +94,7 @@ export const TodosList: React.FC = () => {
               <input
                 type="text"
                 autoFocus
-                onChange={(e) => setEditingText(e.target.value)}
+                onChange={changeEditingText}
                 value={editingText}
                 className={styles.changeInput}
               />
